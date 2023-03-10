@@ -2,8 +2,8 @@ import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn } fro
 
 @Entity({ name: 'growdever'})
 export class GrowdeverEntity {
-    @PrimaryColumn({ name: 'uuid' })
-    id!: string;
+    @PrimaryColumn()
+    uuid!: string;
 
     @Column()
     nome!: string;
