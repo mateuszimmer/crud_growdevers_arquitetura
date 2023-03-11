@@ -6,7 +6,12 @@ export class GrowdeverRepository {
     private _repository = DatabaseConnection.connection.getRepository(GrowdeverEntity);
 
     private _mapToModel(entity: GrowdeverEntity): Growdever {
-        return Growdever.create( entity.nome, entity.email, entity.uuid )
+        return Growdever.create( entity.nome, entity.email, entity.uuid );
+    }
+
+    private _mapToModelAll(entities: GrowdeverEntity[]): Growdever[] {
+        const result = entities.map(entity => Growdever.create(entity.nome, entity.email, entity.uuid));
+        return result;
     }
 
     public async create(growdever: Growdever): Promise<Growdever> {
@@ -18,6 +23,12 @@ export class GrowdeverRepository {
 
         const result = await this._repository.save(growdeverEntity);
 
-        return this,this._mapToModel(result)
+        return this._mapToModel(result)
+    }
+
+    public async list(): Promise<Growdever[]> {
+        const result = await this._repository.find();
+        const growdevers = this._mapToModelAll(result);
+        return growdevers;
     }
 }

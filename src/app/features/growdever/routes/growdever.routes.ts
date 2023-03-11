@@ -9,4 +9,8 @@ growdeverRoutes.post('/',
     new GrowdeverController().create
 );
 
+growdeverRoutes.get('/list',
+    new GrowdeverController().list
+)
+
 export { growdeverRoutes }
