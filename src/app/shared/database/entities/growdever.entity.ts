@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
 
 @Entity({ name: 'growdever'})
 export class GrowdeverEntity {
@@ -16,4 +16,14 @@ export class GrowdeverEntity {
 
     @UpdateDateColumn({ name: 'updated_at' })
     updatedAt!: Date | null;
+
+    @BeforeInsert()
+    setCreatedAt() {
+        this.createdAt = new Date;
+    }
+
+    @BeforeUpdate()
+    setUpdatedAt() {
+        this.updatedAt = new Date;
+    }
 }

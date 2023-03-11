@@ -9,7 +9,7 @@ export class HttpHelper {
         })
     }
 
-    public static serverError( res: Response, data: any, message?: string, code?: number) {
+    public static serverError( res: Response, message?: string, code?: number) {
         return res.status(code ?? 500).send({
             ok: false,
             message,
